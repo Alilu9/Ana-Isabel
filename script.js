@@ -45,9 +45,21 @@ do {
         let promedio = datos.find(datos => datos.NoDeLista === numero)
         if(promedio){
             alert ("El promedio de " + promedio.Nombre + " es "+ Math.round((promedio.Calif1 + promedio.Calif2 + promedio.Calif3)/3))
+        }else{
+            alert("No existe ese alumno/a)")
         }
-    } 
-} while (Opcion == 0);
+    }else if (Opcion === 5){
+        const nuevoAlumno = {NoDeLista: Number(prompt("Por favor ingrese número de lista.")), 
+        Nombre: prompt("Por favor ingrese el nombre del alumno/a."), 
+        Asistencia: Number(prompt("Por favor ingrese la asistencia.")), 
+        Calif1: Number(prompt("Por favor ingrese la 1ra calificación.")),
+        Calif2: Number(prompt("Por favor ingrese la 2da calificación.")),
+        Calif3: Number(prompt("Por favor ingrese la 3ra calificación."))
+        }
+        datos.push (nuevoAlumno)
+        console.log (datos)
+    }
+}while (Opcion == 0);
 
 //Función de Alumnos
 function listar(datos){
