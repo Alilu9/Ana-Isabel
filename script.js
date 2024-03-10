@@ -10,20 +10,52 @@ const datos = [
     { NoDeLista: 8, Nombre: "Marleny", Asistencia: 95, Calif1: 7, Calif2: 8, Calif3: 6 },
 ]
 
-//Función de saludo
-function Saludo(){
-    let Nombre = prompt("Hola, por favor ingrese su nombre")
-    alert("Bienvenido " + Nombre)
+//Menú de Opciones
+const Opcion = [
+    {NoDeOpción: 1, Opción: "Mostrar alumnos/as.", Imagen: "Aprender.png"},
+    {NoDeOpción: 2, Opción: "Ver calificaciones.", Imagen: "Directora.png"},
+    {NoDeOpción: 3, Opción: "Ver asistencia.", Imagen: "Escribir.png"},
+    {NoDeOpción: 4, Opción: "Ver promedio.", Imagen: "Explicar.png"},
+    {NoDeOpción: 5, Opción: "Agregar alumno/a.", Imagen: "Entrevista.png" },
+    {NoDeOpción: 6, Opción: "Salir.", Imagen: "Emoción2.png"},
+]
+
+let contenedor = document.getElementById("Opcion")
+Opcion.forEach(Opcion => {
+    let MenuOpciones = document.createElement("div")
+    MenuOpciones.className = "menu"
+    MenuOpciones.innerHTML = `
+        <img src="./Imágenes/${Opcion.Imagen}" />
+        <button>${Opcion.NoDeOpción + ".- " + Opcion.Opción}</button>
+    `    
+    contenedor.append(MenuOpciones)
+    if (Opcion === 1){
+        let botOpc1 = document.getElementsById(Opcion.NoDeOpción)
+        botOpc1.addEventListener("click", listar)
+    }
+})
+
+
+function listar(datos){
+    let alumnos = "Nombre de Alumnos:\n"
+    datos.forEach(dato => {
+        alumnos = alumnos + dato.NoDeLista + ".- " + dato.Nombre + " \n "
+    })
+    return alumnos
 }
 
-//Inicio
-Saludo()
-let Opcion = Number(prompt("Por favor elija una opción:\n1.- Mostrar alumnos/as.\n2.- Ver calificaciones.\n3.- Ver asistencia.\n4.- Ver promedio.\n5.- Agregar alumno/a.\n6.- Salir.")) 
 
-//Acciones
+//Contenedor
+// let contenedor = document.getElementById("datos")
+// datos.forEach(datos => {
+//     contenedor.innerHTML = contenedor.innerHTML + "<p>" + datos.NoDeLista + ".- " + datos.Nombre + "<p>"
+// })
+
+/*Acciones
 do {
     if (Opcion === 1){
-        listar(datos)
+        let botOpc1 = document.getElementsByClassName(Opcion.NoDeOpción)
+        botOpc1.addEventListener("click", listar)
     }else if (Opcion === 2){
         let numero = Number(prompt("¿De quién desea ver calificaciones?:\n" + listar2(datos)))
         let datoCalif = datos.find(datos => datos.NoDeLista === numero)
@@ -78,3 +110,9 @@ function listar2(datos){
     })
     return alumnos
 }
+
+//Función de saludo
+//function Saludo(){
+    //let Nombre = prompt("Hola, por favor ingrese su nombre")
+    //alert("Bienvenido " + Nombre)
+//}*/
