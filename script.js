@@ -21,22 +21,50 @@ const Opcion = [
 ]
 
 let contenedor = document.getElementById("Opcion")
+contenedor.innerHTML=""
 Opcion.forEach(Opcion => {
     let MenuOpciones = document.createElement("div")
     MenuOpciones.className = "menu"
+    
     MenuOpciones.innerHTML = `
         <img src="./Imágenes/${Opcion.Imagen}" />
-        <button>${Opcion.NoDeOpción + ".- " + Opcion.Opción}</button>
+        <p>${Opcion.NoDeOpción + ".- " + Opcion.Opción}</p>
+        <button id=${Opcion.NoDeOpción}>Seleccionar</button>
     `    
     contenedor.append(MenuOpciones)
-    if (Opcion === 1){
-        let botOpc1 = document.getElementsById(Opcion.NoDeOpción)
-        botOpc1.addEventListener("click", listar)
-    }
+    let botSeleccionar = document.getElementById(Opcion.NoDeOpción)
+    botSeleccionar.addEventListener("click", verLista)
 })
 
+function verLista(e){
+    let botOp = Number(e.target.NoDeOpción)
+    let opSel = Opcion.find(Opcion => Opcion.NoDeOpción === botOp)
+    let alumno = datos.find(datos => datos.NoDeLista === botOp)
+    if(alumno === opSel){
+        let alumnos = "Nombre de Alumnos:\n"
+    datos.forEach(dato => {
+        alumnos = alumnos + dato.NoDeLista + ".- " + dato.Nombre + " \n "
+    })
+    console.log(alumnos)
+    }else
+        alert("No hay alumnos")
+}
 
-function listar(datos){
+function verCalif(e){
+    let botOp = Number(e.target.NoDeOpción)
+    let opSel = Opcion.find(Opcion => Opcion.NoDeOpción === botOp)
+    let Calif = datos.find(datos => datos.NoDeLista === botOp)
+    if(Calif === opSel){
+        let numero = Number(prompt("¿De quién desea ver calificaciones?:\n" + listar2(datos)))
+        let datoCalif = datos.find(datos => datos.NoDeLista === numero)
+        if(datoCalif){
+            alert ("Las calificaciones de " + datoCalif.Nombre + " son:\n" + datoCalif.Calif1 + "\n" + datoCalif.Calif2 + "\n" + datoCalif.Calif3)
+        } else {
+            alert ("No existe ese alumno/a")
+        } 
+}}
+
+function listar2(datos){
     let alumnos = "Nombre de Alumnos:\n"
     datos.forEach(dato => {
         alumnos = alumnos + dato.NoDeLista + ".- " + dato.Nombre + " \n "
@@ -44,8 +72,15 @@ function listar(datos){
     return alumnos
 }
 
+// function listar(datos){
+//     let alumnos = "Nombre de Alumnos:\n"
+//     datos.forEach(dato => {
+//         alumnos = alumnos + dato.NoDeLista + ".- " + dato.Nombre + " \n "
+//     })
+//     console.log(alumnos)
+// }
 
-//Contenedor
+// //Contenedor
 // let contenedor = document.getElementById("datos")
 // datos.forEach(datos => {
 //     contenedor.innerHTML = contenedor.innerHTML + "<p>" + datos.NoDeLista + ".- " + datos.Nombre + "<p>"
