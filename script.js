@@ -1,3 +1,4 @@
+ //AYUDA NO SÉ CÓMO HACER QUE FUNCIONEN LOS OTROS BOTONES.
  //Datos
 const datos = [
     { NoDeLista: 1, Nombre: "Joely", Asistencia: 80, Calif1: 8, Calif2: 7, Calif3: 10 },
@@ -52,9 +53,9 @@ function verLista(e){
 
 function verCalif(e){
     let botOp = Number(e.target.NoDeOpción)
-    let opSel = Opcion.find(Opcion => Opcion.NoDeOpción === botOp)
+    let opSel2 = Opcion.find(Opcion => Opcion.NoDeOpción === botOp)
     let Calif = datos.find(datos => datos.NoDeLista === botOp)
-    if(Calif === opSel){
+    if(Calif === opSel2){
         let numero = Number(prompt("¿De quién desea ver calificaciones?:\n" + listar2(datos)))
         let datoCalif = datos.find(datos => datos.NoDeLista === numero)
         if(datoCalif){
@@ -63,22 +64,6 @@ function verCalif(e){
             alert ("No existe ese alumno/a")
         } 
 }}
-
-function listar2(datos){
-    let alumnos = "Nombre de Alumnos:\n"
-    datos.forEach(dato => {
-        alumnos = alumnos + dato.NoDeLista + ".- " + dato.Nombre + " \n "
-    })
-    return alumnos
-}
-
-// function listar(datos){
-//     let alumnos = "Nombre de Alumnos:\n"
-//     datos.forEach(dato => {
-//         alumnos = alumnos + dato.NoDeLista + ".- " + dato.Nombre + " \n "
-//     })
-//     console.log(alumnos)
-// }
 
 // //Contenedor
 // let contenedor = document.getElementById("datos")
